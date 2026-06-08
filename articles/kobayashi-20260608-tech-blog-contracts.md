@@ -3,7 +3,7 @@ title: "製造業のエンジニアが技術ブログで『30万円の壁』を�
 emoji: "🛠️"
 type: "tech"
 topics: ["blog", "dx", "manufacturing", "career", "web"]
-published: false
+published: true
 ---
 
 # 製造業のエンジニアが技術ブログで『30万円の壁』を越える書き方
