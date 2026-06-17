@@ -24,6 +24,20 @@ ART_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "articles")
 SLUG_RE = re.compile(r"^[a-z0-9_-]{12,50}$")
 errors = []
 
+# 公開記事に載せてはいけない「一般読者が到達できない内部URL/ホスト」(2026-06-17追加)。
+# Tailscale限定URLを問い合わせ導線に書いてしまう事故の再発防止。
+# 例: https://x1lite.tail602503.ts.net/ はTailscale参加端末しか開けない。
+# ※localhost/プライベートIPはコード例で正当に使われるため、ここでは「Tailscale/内部ホスト名」に限定して誤検知を避ける。
+# 検出するのは「一般読者が絶対に到達できない＝著者の私的インフラ(Tailscale/自宅サーバx1lite)」だけ。
+# localhost/127.0.0.1/プライベートIPはコード例で正当に使われる(読者が自環境で動かす)ため弾かない=誤検知回避。
+# 文章中の単なる語「自宅サーバーx1lite」も正当なので弾かない。URL/FQDNとして使われた時だけ検出。
+FORBIDDEN_HOST_RE = re.compile(
+    r"\b[A-Za-z0-9._-]*\.ts\.net\b"                       # Tailscale MagicDNS/serve (*.ts.net) ※常に到達不可
+    r"|https?://[A-Za-z0-9._:-]*x1lite[A-Za-z0-9._:-]*"   # x1liteを含むURL
+    r"|\bx1lite\.[A-Za-z0-9.-]+",                         # x1lite.<fqdn> 形
+    re.IGNORECASE,
+)
+
 def parse_frontmatter(text):
     """先頭の --- ... --- ブロックを返す(dict)。YAMLが無ければ簡易パース。"""
     if not text.startswith("---"):
@@ -85,6 +99,12 @@ def check(path):
     emoji = fm.get("emoji", "")
     if isinstance(emoji, str) and len(emoji) < 1:
         errs.append("emojiが空")
+    # 内部URL/ホスト検出(本文全体)。一般読者が到達できないリンクは公開記事に載せない。
+    for i, line in enumerate(text.splitlines(), 1):
+        m = FORBIDDEN_HOST_RE.search(line)
+        if m:
+            errs.append(f"内部URL/ホスト検出(一般読者が到達不可・公開記事に載せない): "
+                        f"L{i} '{m.group(0)}' → 公開URL(例 https://zenn.dev/yutaka8484)に置換")
     return errs
 
 def main():
