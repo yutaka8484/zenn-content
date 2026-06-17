@@ -2,7 +2,7 @@
 title: "製造業のデータサイロをNangoで統合：AIに必要なデータだけを通す実践構成"
 emoji: "🛠️"
 type: "tech"
-topics: ["api", "ai", "dx", "integration", "nango", "docker"]
+topics: ["api", "ai", "dx", "integration", "nango"]
 published: true
 ---
 

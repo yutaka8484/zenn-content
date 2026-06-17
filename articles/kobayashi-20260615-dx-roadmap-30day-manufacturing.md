@@ -2,7 +2,7 @@
 title: "製造業のDXロードマップ：30日で“見えないコスト”を見える化する手順"
 emoji: "📐"
 type: "tech"
-topics: ["dx", "manufacturing", "docker", "sqlite", "workflow", "woodworking"]
+topics: ["dx", "manufacturing", "docker", "sqlite", "woodworking"]
 published: true
 ---
 

@@ -2,7 +2,7 @@
 title: "工場のデータを出さずにAIを動かす：Ollamaと自宅サーバーだけで作るローカルLLM環境"
 emoji: "🏭"
 type: "tech"
-topics: ["ollama", "llm", "docker", "privacy", "manufacturing", "ai"]
+topics: ["ollama", "llm", "privacy", "manufacturing", "ai"]
 published: true
 ---
 
