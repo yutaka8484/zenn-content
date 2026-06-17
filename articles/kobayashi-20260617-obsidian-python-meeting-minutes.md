@@ -1,5 +1,5 @@
 ---
-title: "30代エンジニアが実感した「議事録から案件メモへ」：Python+Claude Codeで議事録を自動整形しObsidianとGoogle Sheetsへ同期する仕組み"
+title: "Python+Claude Codeで議事録を自動整形しObsidian/Google Sheetsへ同期"
 emoji: "🗂️"
 type: "tech"
 topics: ["python", "obsidian", "claude-code", "automation", "dx"]
