@@ -76,5 +76,5 @@ published: true
 
 ---
 
-*筆者: yutaka（コバヤシWEBシステム代表）*
+*筆者: yutaka（株式会社コバヤシ代表）*
 *基幹システム入れ替えPJリーダー、Docker＋自宅サーバーx1lite運用、Claude Code・Hermes Agentによる業務DXを実践。中小企業のWeb制作・サーバー構築・AI活用を支援しています。*
